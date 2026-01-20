@@ -13,18 +13,14 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
-
 @Setter
-
 @Entity
-
-@Table(name = "produtos")
-
+@Table(name="produtos")
 public class Produto {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -37,8 +33,8 @@ public class Produto {
 
     private boolean disponivel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="restaurante_id" )
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurante_id")
     private Restaurante restaurante;
     
 }

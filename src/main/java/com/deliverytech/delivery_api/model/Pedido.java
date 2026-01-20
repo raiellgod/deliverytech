@@ -23,17 +23,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-
 @Setter
-
 @Entity
-
-@Table(name = "pedidos")
-
+@Table(name="pedidos")
 public class Pedido {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="data_pedido")
@@ -42,27 +38,26 @@ public class Pedido {
     @Column(name="endereco_entrega")
     private String enderecoEntrega;
 
-    @Column(name="numero_pedido", nullable = false)
+    @Column(name="numero_pedido")
     private String numeroPedido;
 
     @Column(name="taxa_entrega")
     private BigDecimal taxaEntrega;
-    
-    
+
     @Column(name="valor_total")
     private BigDecimal valorTotal;
 
     @Enumerated(EnumType.STRING)
     private StatusPedidos status;
 
-    @ManyToOne(fetch= FetchType.LAZY) 
-    @JoinColumn(name= "cliente_id" )
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cliente_id")
     private Cliente cliente;
-    
-    @ManyToOne(fetch= FetchType.LAZY) 
-    @JoinColumn(name= "restaurante_id" )
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurante_id")
     private Restaurante restaurante;
 
-    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="pedidos")
     private List<ItemPedido> itens = new ArrayList<>();
 }

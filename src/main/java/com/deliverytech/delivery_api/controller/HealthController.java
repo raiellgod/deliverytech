@@ -6,11 +6,13 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class HealthController {
-
+    
     @GetMapping("/health")
     public Map<String, String> health(){
+
         return Map.of(
             "status", "UP",
             "timestamp", LocalDateTime.now().toString(),
@@ -22,20 +24,19 @@ public class HealthController {
     @GetMapping("/info")
     public AppInfo info(){
         return new AppInfo(
-            "Delivery Tech API",
+            "Delivery Tech Api",
             "1.0.0",
-            "Raiel",
+            "Elaine",
             "JDK 21",
             "Spring Boot"
         );
     }
 
-    // Record para demonstrar recursos do Java 14+ (disponível no JDK 21)
     public record AppInfo(
-        String name,
+        String application,
         String version,
-        String developer,
+        String developer, 
         String javaVersion,
         String framework
-    ) {}
+    ){}
 }

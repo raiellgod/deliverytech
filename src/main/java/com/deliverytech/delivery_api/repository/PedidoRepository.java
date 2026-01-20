@@ -12,12 +12,18 @@ import com.deliverytech.delivery_api.enums.StatusPedidos;
 import com.deliverytech.delivery_api.model.Pedido;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long>{
-
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     List<Pedido> findByClientId(Long clienteId);
+
     List<Pedido> findByStatus(StatusPedidos status);
 
-    @Query("SELECT p FROM Pedido p WHERE p.dataPedido BETWEEN :inicio AND :fim")
-    List<Pedido> findByDateTime(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
+    @Query("""
+            SELECT p FROM Pedido p
+            WHERE p.dataPedido  BETWEEN :inicio AND :fim
+    """)
+    List<Pedido> findByDateTime(
+        @Param("inicio") LocalDateTime inicio,
+        @Param("fim") LocalDateTime fim
+    );
     
 }
