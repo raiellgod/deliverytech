@@ -35,6 +35,7 @@ public class ClienteService {
     public List<Cliente> listarAtivos(){
         return repository.findByAtivoTrue();
     }
+
     public List<Cliente> buscarPorNome(String nome){
         return repository.findByNomeContainingIgnoreCase(nome);
     }

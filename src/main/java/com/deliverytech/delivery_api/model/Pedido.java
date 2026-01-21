@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.deliverytech.delivery_api.enums.StatusPedidos;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -58,6 +59,7 @@ public class Pedido {
     @JoinColumn(name="restaurante_id")
     private Restaurante restaurante;
 
-    @OneToMany(mappedBy="pedidos")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
+
 }

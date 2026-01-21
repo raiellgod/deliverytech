@@ -71,7 +71,7 @@ public class PedidoService {
     }
 
     public List<Pedido> listarPorCliente(Long clienteId){
-        return pedidoRepository.findByClientId(clienteId);
+        return pedidoRepository.findByClienteId(clienteId);
     }
 
     public ItemPedido adicionarItem(Long pedidoId, Long produtoId, Integer quantidade){

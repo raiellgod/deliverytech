@@ -13,7 +13,7 @@ import com.deliverytech.delivery_api.model.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-    List<Pedido> findByClientId(Long clienteId);
+    List<Pedido> findByClienteId(Long clienteId);
 
     List<Pedido> findByStatus(StatusPedidos status);
 
