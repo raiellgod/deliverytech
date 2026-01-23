@@ -34,4 +34,9 @@ public class ProdutoService {
     public List<Produto> listarPorRestaurante(Long restauranteId){
         return produtoRepository.findByRestauranteIdAndDisponivelTrue(restauranteId);
     }
+    public Produto buscarPorId(Long id) {
+        return produtoRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
+    }
+
 }

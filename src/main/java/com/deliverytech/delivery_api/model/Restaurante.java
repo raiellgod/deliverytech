@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,9 +44,11 @@ public class Restaurante {
     private boolean ativo;
 
     @OneToMany(mappedBy="restaurante", fetch= FetchType.LAZY)
+    @JsonIgnore
     private List<Produto> produtos = new ArrayList<>();
 
     @OneToMany(mappedBy="restaurante", fetch= FetchType.LAZY)
+    @JsonIgnore
     private List<Pedido> pedidos = new ArrayList<>();
 
 }

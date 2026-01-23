@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.deliverytech.delivery_api.enums.StatusPedidos;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -51,15 +52,18 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedidos status;
 
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="restaurante_id")
     private Restaurante restaurante;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<ItemPedido> itens = new ArrayList<>();
 
 }

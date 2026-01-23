@@ -2,6 +2,8 @@ package com.deliverytech.delivery_api.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,11 +33,12 @@ public class ItemPedido {
     
     private BigDecimal subtotal;
 
-
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="produto_id")
     private Produto produto;
 
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="pedido_id")
     private Pedido pedido;
