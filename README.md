@@ -33,7 +33,7 @@ Sistema de delivery desenvolvido com Spring Boot e Java 21.
 - Profile: development
 
 ## 👨‍💻 Desenvolvedor
-[Seu Nome] - [Sua Turma]
+Raiel Godinho - TI 2602 ARQUITETURA DE SISTEMAS - Turma 2602
 Desenvolvido com JDK 21 e Spring Boot 3.2.x
 
 
