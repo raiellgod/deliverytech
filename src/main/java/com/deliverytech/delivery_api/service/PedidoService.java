@@ -55,7 +55,7 @@ public class PedidoService {
         Pedido entradaPedido = new Pedido();
         entradaPedido.setCliente(cliente);
         entradaPedido.setRestaurante(restaurante);
-        /* entradaPedido.setNumeroPedido(numeroPedido); */
+        /* entradaPedido.setNumeroPedido(); */
         entradaPedido.setStatus(StatusPedidos.PENDENTE);
         entradaPedido.setDataPedido(LocalDateTime.now());
         entradaPedido.setValorTotal(BigDecimal.ZERO);
