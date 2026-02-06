@@ -41,8 +41,6 @@ public class Pedido {
     @Column(name="endereco_entrega")
     private String enderecoEntrega;
 
-    @Column(name="numero_pedido")
-    private String numeroPedido;
 
     @Column(name="taxa_entrega")
     private BigDecimal taxaEntrega;
@@ -52,6 +50,7 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     private StatusPedidos status;
+
 
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)

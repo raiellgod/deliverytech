@@ -26,8 +26,7 @@ public class RestauranteDTO {
     @NotBlank
     private String telefone;
 
-    @NotBlank
+    @NotNull(message = "A taxa de entrega não pode ser nula.")
     private BigDecimal taxaEntrega;
-
 
 }

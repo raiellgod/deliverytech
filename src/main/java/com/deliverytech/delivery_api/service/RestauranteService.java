@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.deliverytech.delivery_api.dto.requests.RestauranteDTO;
 import com.deliverytech.delivery_api.dto.responses.RestauranteResponseDTO;
 import com.deliverytech.delivery_api.exceptions.BusinessException;
+import com.deliverytech.delivery_api.exceptions.EntityNotFoundException;
 import com.deliverytech.delivery_api.model.Restaurante;
 import com.deliverytech.delivery_api.repository.RestauranteRepository;
 
@@ -37,23 +38,34 @@ public class RestauranteService {
         return mapper.map(salvo, RestauranteResponseDTO.class);
     }
 
-    public List<Restaurante> listarAtivos(){
-        return repository.findByAtivoTrue();
+    public List<RestauranteResponseDTO> listarAtivos(){
+        return repository.findByAtivoTrue()
+        .stream()
+        .map(r -> mapper.map(r, RestauranteResponseDTO.class))
+        .toList();
     }
 
-    public List<Restaurante> buscarPorCategoria(String categoria){
-        return repository.findByCategoriaAndAtivoTrue(categoria);
+    public List<RestauranteResponseDTO> buscarPorCategoria(String categoria){
+        return repository.findByCategoriaAndAtivoTrue(categoria)
+        .stream()
+        .map(c -> mapper.map(c, RestauranteResponseDTO.class))
+        .toList();
     }
 
-    public Restaurante buscarPorId(Long id){
-        return repository.findById(id)
-        .orElseThrow(()-> new IllegalArgumentException("Restaurante não encontrado."));
+    public RestauranteResponseDTO buscarPorId(Long id){
+        Restaurante r = repository.findById(id)
+        .orElseThrow(()-> new EntityNotFoundException("Restaurante não encontrado."));
+        return mapper.map(r, RestauranteResponseDTO.class);
     }
 
-    public void desativar(Long id){
-        Restaurante restaurante =  buscarPorId(id);
-        restaurante.setAtivo(false);
-        repository.save(restaurante);
+    @Transactional
+    public RestauranteResponseDTO toggle(Long id){
+        Restaurante restaurante = repository.findById(id)
+        .orElseThrow(()-> new EntityNotFoundException("Restaurante não encontrado."));
+
+        restaurante.setAtivo(!restaurante.isAtivo());
+
+        return mapper.map(restaurante, RestauranteResponseDTO.class);
     } 
 
     
